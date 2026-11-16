@@ -1,0 +1,14 @@
+# Cloudflare Pages: HTTP-Header (entspricht staticwebapp.config.json für Azure)
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'self'; frame-src 'self'; frame-ancestors 'self'; base-uri 'self'
+
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/project/thesis/Bachelorarbeit-Ahmad-Alsayad.pdf
+  Cache-Control: public, max-age=86400
+  Content-Disposition: inline

@@ -1,0 +1,4 @@
+# Cloudflare Pages: Weiterleitungen
+# Die Projektseite ist von /project/ nach /project-agentic-ai/ umgezogen. /project/thesis/ bleibt unberührt.
+/project    /project-agentic-ai/  301
+/project/   /project-agentic-ai/  301

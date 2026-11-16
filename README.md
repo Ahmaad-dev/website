@@ -9,7 +9,9 @@ site/
 ├── project-agentic-ai/index.html  /project-agentic-ai/  Projekt und Ergebnisse (/project/ leitet hierher um)
 ├── project/thesis/index.html   /project/thesis/  Bachelorarbeit (Leseansicht und Download)
 ├── 404.html
-├── staticwebapp.config.json    Routing und Header für Azure Static Web Apps
+├── _headers                    Sicherheits- und Cache-Header (Cloudflare Pages)
+├── _redirects                  Weiterleitung /project/ → /project-agentic-ai/ (Cloudflare Pages)
+├── staticwebapp.config.json    dieselben Regeln für Azure Static Web Apps (Reserve)
 └── assets/ (css, js, img)
 ```
 
@@ -23,8 +25,14 @@ python -m http.server 8080
 
 Die Seite muss über einen Server laufen, nicht über `file://`, weil sie mit absoluten Pfaden (`/assets/...`) arbeitet.
 
-## Später: Azure
+## Hosting: Cloudflare Pages
 
-Zielplattform ist Azure Static Web Apps (Free-Tarif). Einstellungen: `app_location: "site"`,
-kein `api_location`, kein Build (`skip_app_build: true`). Danach wird die eigene Domain
-`ahmadalsayad.com` verbunden: per TXT-Eintrag für die Apex-Domain, CNAME für `www`.
+Die Seite läuft auf Cloudflare Pages, verbunden mit diesem Repository. Jeder Push auf `main`
+veröffentlicht automatisch. Einstellungen: Framework „None“, kein Build-Befehl,
+Ausgabeverzeichnis `site`. Domain `ahmadalsayad.com` (Hauptadresse) und `www` (leitet weiter).
+
+Nach Änderungen an CSS/JS die Versionsnummer `?v=` in den HTML-Dateien erhöhen, weil
+`/assets/*` eine Woche im Browser gecacht wird.
+
+Azure Static Web Apps war geplant, ist mit dem Studenten-Abonnement aber nicht möglich
+(Regionssperre). `staticwebapp.config.json` bleibt für einen späteren Umzug erhalten.
