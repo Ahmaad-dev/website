@@ -1,0 +1,17 @@
+{
+  "trailingSlash": "auto",
+  "routes": [
+    { "route": "/project/thesis/*.pdf", "headers": { "Cache-Control": "public, max-age=86400", "Content-Disposition": "inline" } },
+    { "route": "/assets/*", "headers": { "Cache-Control": "public, max-age=604800" } }
+  ],
+  "responseOverrides": {
+    "404": { "rewrite": "/404.html", "statusCode": 404 }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'self'; frame-src 'self'; frame-ancestors 'self'; base-uri 'self'"
+  },
+  "mimeTypes": { ".json": "application/json" }
+}

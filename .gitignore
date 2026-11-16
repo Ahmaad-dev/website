@@ -1,0 +1,10 @@
+# Quellmaterial – wird nicht veröffentlicht (vertrauliche Vorlage, persönliche Daten)
+Artikel/
+Bachelorarbeit/
+
+# Betriebssystem / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.tmp

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic AI Projekt</title>
+<meta name="description" content="Agentic AI für Smart Manufacturing: ein Multi-Agenten-System, das Produktionsplanungsdaten prüft, Fehler analysiert, regelgestützt korrigiert und die Ergebnisse dokumentiert.">
+<meta name="theme-color" content="#07090b">
+<meta property="og:title" content="Agentic AI für Smart Manufacturing – Ahmad Alsayad">
+<meta property="og:image" content="/assets/img/PT4_Foto1_AgenticAI_Titelbild.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090b'/%3E%3Ccircle cx='10' cy='11' r='3' fill='%2344d1bd'/%3E%3Ccircle cx='22' cy='9' r='2' fill='%23e9eeeb'/%3E%3Ccircle cx='19' cy='22' r='3' fill='%23e9eeeb'/%3E%3Cpath d='M10 11 22 9M10 11l9 11M22 9l-3 13' stroke='%2344d1bd' stroke-width='1.2' opacity='.7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css?v=8">
+<link rel="stylesheet" href="/assets/css/project.css?v=8">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<nav class="nav solid" aria-label="Hauptnavigation">
+  <a class="brand" href="/"><i></i>HOME</a>
+  <ul>
+    <li><a class="link" href="/#hintergrund">Knowledge</a></li>
+    <li><span class="link off" aria-disabled="true">Projects</span></li>
+    <li><a class="link" href="/project-agentic-ai/" aria-current="page">Agentic AI</a></li>
+    <li><a class="link" href="/project/thesis/">Thesis</a></li>
+  </ul>
+</nav>
+
+<!-- ───────────── HERO ───────────── -->
+<header class="p-hero wrap">
+  <div class="eyebrow reveal">Projekt · Agentic AI · Smart Manufacturing</div>
+  <h1 class="reveal">Agentic AI für<br><em>Smart Manufacturing.</em></h1>
+  <p class="claim-line reveal">Intelligente Automatisierung für komplexe Produktionsdaten.</p>
+  <div class="lede reveal">
+    <p>Ein Multi-Agenten-System, das umfangreiche Produktionsdaten überprüft, Fehler analysiert, Korrekturen
+      anhand hinterlegter Regeln erarbeitet und die Ergebnisse dokumentiert.</p>
+    <p>Das Projekt umfasst die Entwicklung der KI-Agenten, die Integration bestehender Systeme,
+      Benutzeroberflächen und die Bereitstellung einer Cloud-Infrastruktur.</p>
+  </div>
+
+  <dl class="facts reveal">
+    <div><dt>Studienpartner</dt><dd>USTP St. Pölten · Smart Engineering</dd></div>
+    <div><dt>Industriepartner</dt><dd>CANCOM Austria AG · Digital Makers</dd></div>
+    <div><dt>Umfang</dt><dd>Konzeption · Umsetzung · Evaluation</dd></div>
+    <div><dt>Status</dt><dd><span class="dot"></span>Abgeschlossen</dd></div>
+  </dl>
+</header>
+
+<figure class="hero-fig wrap reveal">
+  <button class="zoom" data-full="/assets/img/PT4_Foto1_AgenticAI_Titelbild.png" aria-label="Systemüberblick vergrössern">
+    <img src="/assets/img/PT4_Foto1_AgenticAI_Titelbild.png" alt="Visualisierung eines graphbasierten Multi-Agenten-Systems, das komplexe Produktionsplanungsdaten analysiert, korrigiert und erneut validiert." width="2000" height="1125">
+  </button>
+  <figcaption>Systemüberblick: Produktionsdaten → Multi-Agenten-System → erneute Validierung im Zielsystem.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+</figure>
+
+<!-- ───────────── KENNZAHLEN ───────────── -->
+<section class="wrap kpi-wrap reveal" aria-label="Die Leistung hinter dem Projekt">
+  <span class="eyebrow">Die Leistung hinter dem Projekt</span>
+  <div class="kpi-grid">
+    <div class="kpi-hero">
+      <canvas id="hay" aria-hidden="true"></canvas>
+      <div class="kh-text">
+        <b data-count="200000" data-prefix="&gt; ">&gt; 200.000</b>
+        <span class="kh-sub">Einträge in einem einzelnen Snapshot.</span>
+        <p>Drei bis fünf davon sind falsch – und schon einer genügt, damit die Produktionsplanung nicht mehr
+          stimmt. Das System findet sie, korrigiert sie und lässt das Zielsystem neu prüfen.</p>
+        <div class="kh-legend"><span><i class="e"></i>Fehler erkannt</span><span><i class="c"></i>korrigiert</span><span class="ill">Illustration</span></div>
+      </div>
+    </div>
+    <div class="kpi-side">
+      <div class="kpi-m">
+        <svg class="kv agents" viewBox="0 0 72 48" width="72" height="48" aria-hidden="true">
+          <path d="M24 24 44 6M24 24 62 14M24 24 66 32M24 24 46 43M24 24 8 40"/>
+          <circle class="c0" cx="24" cy="24" r="8.5"/><circle cx="44" cy="6" r="4.5"/><circle cx="62" cy="14" r="4.5"/><circle cx="66" cy="32" r="4.5"/><circle cx="46" cy="43" r="4.5"/><circle class="dm" cx="8" cy="40" r="4.5"/>
+        </svg>
+        <div><b data-count="6">6</b><h3>KI-Agenten</h3><p>Orchestrierung, Wissen, Planung, Dialog, E-Mail – und Websuche bei Bedarf</p></div>
+      </div>
+      <div class="kpi-m">
+        <div class="kv tools" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div><b data-count="10">10</b><h3>Werkzeuge</h3><p>Datenzugriff, Prüfung, Korrektur, Rückschreibung</p></div>
+      </div>
+      <div class="kpi-m">
+        <div class="kv pipes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div><b data-count="4">4</b><h3>Pipelines</h3><p>vordefinierte Abläufe für wiederkehrende Workflows</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── PROBLEM ───────────── -->
+<section class="sec wrap" id="problem">
+  <div class="sec-head reveal"><span class="num">01</span><span class="eyebrow">Das Problem</span></div>
+  <div class="split">
+    <h2 class="reveal">Zwischen Fehlererkennung <em>und Fehlerbehebung.</em></h2>
+    <div class="reveal">
+      <p>Ausgangspunkt war ein real eingesetztes Produktionsplanungssystem. Seine Planungsstände kommen als
+        Snapshots aus dem ERP-System: Aufträge, Materialbedarfe, Maschinenbelegung,
+        Mitarbeiterqualifikationen – verbunden mit nahezu allen Bereichen des Unternehmens.</p>
+      <p>Das bestehende Planungssystem erkennt solche Fehler, kann sie jedoch nicht eigenständig beheben.
+        Die eigentliche Herausforderung liegt darin, die Zusammenhänge zu verstehen und eine fachlich korrekte
+        Korrektur abzuleiten.</p>
+    </div>
+  </div>
+
+  <div class="ba reveal">
+    <div class="ba-head">
+      <span class="eyebrow">Ein Beispiel aus der Praxis</span>
+      <h3>Ein Snapshot, drei bis fünf gemeldete Fehler.</h3>
+    </div>
+    <div class="ba-cols">
+      <div class="ba-col before">
+        <span class="ba-tag"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="11" cy="14" r="2.5"/><path d="m13 16 2 2"/></svg>Bisher · von Hand</span>
+        <b class="ba-time">2–6 <small>Stunden</small></b>
+        <ol>
+          <li>Fehlermeldung lesen und die betroffene Stelle in über 200.000 Einträgen finden</li>
+          <li>Beziehungen zu Artikeln, Ressourcen und Arbeitsplänen prüfen</li>
+          <li>Den richtigen Wert herleiten und von Hand ändern</li>
+          <li>Snapshot zurückspielen, neu validieren – und bei Folgefehlern von vorn</li>
+        </ol>
+      </div>
+      <div class="ba-arrow" aria-hidden="true">→</div>
+      <div class="ba-col after">
+        <span class="ba-tag"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V13a3 3 0 0 0 3 3h6.5"/><path d="M13 13.5 15.5 16 13 18.5"/></svg>Mit dem System</span>
+        <b class="ba-time">2–6 <small>Minuten</small></b>
+        <ol>
+          <li>Snapshot abrufen und Validierungsmeldungen auslesen</li>
+          <li>Fehler analysieren, passenden Datenausschnitt und Regeln laden</li>
+          <li>Strukturierte Korrektur erzeugen und technisch prüfen</li>
+          <li>Anwenden, zurückschreiben, im Zielsystem neu validieren – mit Bericht</li>
+        </ol>
+      </div>
+    </div>
+    <p class="ba-note">Beobachtungen aus dem Projektbetrieb bei Snapshots mit wenigen Fehlern – keine kontrollierte Messung und keine Laufzeitgarantie.</p>
+  </div>
+
+  <p class="q-line plain reveal">Kann ein KI-System solche Daten nicht nur analysieren, sondern gezielt korrigieren – und dabei so transparent bleiben, dass Fachpersonen jede Entscheidung <span class="hl">nachvollziehen</span> können?</p>
+</section>
+
+<!-- ───────────── ANSATZ ───────────── -->
+<section class="sec wrap" id="ansatz">
+  <div class="sec-head reveal"><span class="num">02</span><span class="eyebrow">Der Ansatz</span></div>
+  <div class="split">
+    <h2 class="reveal">Kein einzelner Prompt, sondern <em>spezialisierte Agenten</em>.</h2>
+    <div class="reveal">
+      <p>Komplexe Produktionsdaten verlangen unterschiedliche Fähigkeiten. Statt eines Modells, das alles
+        können soll, teilt sich das System die Arbeit: Ein Orchestrator versteht die Anfrage und plant,
+        Spezialisten übernehmen Wissen, Planungssystem und Dialog. Bei Bedarf kommen eine Websuche für
+        externes Wissen und ein E-Mail-Agent dazu, der Berichte an verantwortliche Stellen verschickt.</p>
+      <p>Jeder Agent hat eine klar begrenzte Aufgabe, eigene Werkzeuge und genau den Kontext, den er dafür
+        braucht. <strong>Fahre über die Knoten</strong>, um zu sehen, wer was macht.</p>
+    </div>
+  </div>
+
+  <div class="mesh reveal" id="mesh">
+    <div class="mesh-stage" id="meshStage">
+      <svg class="mesh-svg" id="meshSvg" aria-hidden="true"></svg>
+      <div class="mesh-tip" id="meshTip" role="tooltip"></div>
+    </div>
+    <div class="mesh-bar">
+      <div class="mesh-scn" id="meshScn" role="group" aria-label="Beispielablauf wählen"></div>
+      <span class="mesh-step" id="meshStep" aria-live="polite"></span>
+    </div>
+  </div>
+  <ul class="sr-only">
+    <li>Orchestrator: primäre Schnittstelle zur Fachperson, plant die Schritte und verteilt die Aufgaben.</li>
+    <li>RAG-Agent: sucht über Azure AI Search in Produktionsdokumenten und Validierungsregelwerken.</li>
+    <li>Smart-Planning-Agent: holt, prüft, korrigiert und schreibt Snapshots im Planungssystem zurück.</li>
+    <li>Chat-Agent: beantwortet fachliche Rückfragen und erklärt Fehlerklassen.</li>
+    <li>Websearch-Agent: wird nur bei Bedarf zugeschaltet, wenn externes Wissen aus dem Web nötig ist.</li>
+    <li>E-Mail-Agent: bereitet E-Mails mit Berichten vor und versendet sie erst auf ausdrückliche Anweisung.</li>
+  </ul>
+
+  <div class="together">
+    <article class="reveal"><span class="n">01</span><h3>Vom Auftrag bis zur Prüfung</h3><p>Anfrage verstehen, Wissen finden, im Planungssystem handeln, Ergebnis erklären – ein durchgehender Ablauf statt einzelner Insellösungen.</p></article>
+    <article class="reveal"><span class="n">02</span><h3>Fokussierter Kontext</h3><p>Ein Agent bekommt nur, was er für seine Aufgabe braucht. Das hält jede Entscheidung schlank und überprüfbar.</p></article>
+    <article class="reveal"><span class="n">03</span><h3>Erweiterbar</h3><p>Neue Fehlerarten kommen über zusätzliche Regelkarten dazu, neue Werkzeuge und Prozesse lassen sich anbinden.</p></article>
+    <article class="reveal"><span class="n">04</span><h3>Kontrolle beim Menschen</h3><p>Kritische Änderungen gehen erst nach Freigabe ins System. Ergebnisse lassen sich als Bericht per E-Mail-Agent weitergeben.</p></article>
+  </div>
+
+  <div class="split note reveal">
+    <div>
+      <h3 class="serif">Das Regelbuch zerlegen</h3>
+      <p class="note-sub">Das Regelbuch enthält das Fachwissen für die Korrektur: welche Regeln für einen erkannten
+        Fehler gelten und wie sich der richtige Wert herleiten lässt.</p>
+      <div class="snr" aria-label="Mehr Signal, weniger Rauschen">
+        <span class="snr-t">Theorie: Signal-to-Noise Ratio</span>
+        <span class="snr-k">Mehr Signal, weniger Rauschen</span>
+        <div class="snr-row"><span>Ganzes Regelwerk</span><i class="snr-bar noisy"><b style="width:12%"></b></i></div>
+        <div class="snr-row"><span>Passende Regelkarten</span><i class="snr-bar clean"><b style="width:78%"></b></i></div>
+        <small>Schematische Darstellung</small>
+      </div>
+    </div>
+    <p>Statt bei jeder Korrektur das gesamte Regelwerk bereitzustellen, wurde das Wissen in einen
+      gemeinsamen Kern und modulare Regelkarten gegliedert. Abhängig vom erkannten Fehler erhält das System
+      gezielt die relevanten Regeln – der Kontext bleibt fokussiert, und es ist nachvollziehbar, welche
+      Regelgrundlage in eine Korrektur eingeflossen ist. Die Regeln sind in natürlicher Sprache verfasst,
+      sodass Fachleute sie ohne Programmierkenntnisse pflegen können.<br><br>
+      Der Gedanke dahinter: Das Modell soll nicht alles sehen, sondern das Richtige. Weniger, aber
+      relevanter Kontext – <strong>mehr Signal, weniger Rauschen</strong>.</p>
+  </div>
+</section>
+
+<!-- ───────────── GRAPH ───────────── -->
+<section class="sec wrap" id="graph">
+  <div class="sec-head reveal"><span class="num">03</span><span class="eyebrow">Der Graph</span></div>
+  <div class="split">
+    <h2 class="reveal">Komplexe Abläufe, klar nachvollziehbar. <em>Der Prozess wird zum Graphen.</em></h2>
+    <p class="reveal">Fehlerklassifikation, Kontextsuche, Regelzuordnung, Korrekturerzeugung, technische Prüfung
+      und erneute Validierung sind klar abgegrenzte Knoten. Jeder schreibt seinen Zwischenstand in einen
+      gemeinsamen Zustand. So lässt sich im Nachhinein rekonstruieren, was das Modell gesehen hat und warum
+      der Ablauf weiterlief oder stoppte.</p>
+  </div>
+
+  <div class="pipe reveal" id="pipe">
+    <div class="pipe-top">
+      <span class="mono">Graph-Trace mit Ablauf, Regeln und Provenienz · 9 Knoten</span>
+      <button class="play" id="pipePlay" aria-pressed="true">❚❚ Pause</button>
+    </div>
+    <svg id="pipeSvg" role="img" aria-label="Der Korrekturgraph mit neun Knoten, von der Eingabeanalyse bis zur Antwort, mit einer Schleife für weitere Korrekturrunden"></svg>
+    <div class="pipe-detail" id="pipeDetail" aria-live="polite"></div>
+    <p class="pipe-foot"><span class="tag llm">LLM</span> Nur drei der neun Knoten rufen das Sprachmodell auf –
+      genau so viele Aufrufe wie im bisherigen Ablauf. Der Graph ist nicht „KI-lastiger“, er macht sichtbar, was zwischen den Aufrufen passiert.</p>
+  </div>
+
+  <figure class="shot reveal">
+    <button class="zoom" data-full="/assets/img/PT4_Foto3_GraphTrace.png" aria-label="Graph-Ablauf vergrössern">
+      <img src="/assets/img/PT4_Foto3_GraphTrace.png" alt="Graphbasierter Korrekturprozess mit mehreren Verarbeitungsknoten von der Fehleranalyse bis zur erneuten Validierung." loading="lazy">
+    </button>
+    <figcaption>Ein realer Lauf, Schritt für Schritt abspielbar: Welche Regeln geladen waren, welcher Kontext vorlag, was die Anwendung bewirkt hat.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+  </figure>
+</section>
+
+<!-- ───────────── BETRIEB ───────────── -->
+<section class="sec wrap" id="betrieb">
+  <div class="sec-head reveal"><span class="num">04</span><span class="eyebrow">Im Betrieb</span></div>
+  <div class="split">
+    <h2 class="reveal">Vom Laptop in die Cloud – <em>mit dem Menschen im Ablauf.</em></h2>
+    <div class="reveal">
+      <p>Am Ende steht kein Konzept, sondern ein funktionsfähiges Gesamtsystem: in Azure bereitgestellt, über
+        eine Weboberfläche bedienbar und an ein reales Produktionsplanungssystem angebunden.</p>
+      <p>Ein Snapshot wird geladen, validiert, analysiert, korrigiert, zurückgeschrieben und anschliessend
+        erneut durch das Zielsystem geprüft. Auditierbarkeit, Kontrolle und Reproduzierbarkeit wurden dabei
+        nicht nachträglich aufgesetzt, sondern haben die Architektur von Anfang an geprägt.</p>
+      <div class="azure">
+        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M22.379 23.343a1.62 1.62 0 0 0 1.536-2.14v.002L17.35 1.76A1.62 1.62 0 0 0 15.816.657H8.184A1.62 1.62 0 0 0 6.65 1.76L.086 21.204a1.62 1.62 0 0 0 1.536 2.139h4.741a1.62 1.62 0 0 0 1.535-1.103l.977-2.892 4.947 3.675c.28.208.618.32.966.32m-3.084-12.531 3.624 10.739a.54.54 0 0 1-.51.713v-.001h-.03a.54.54 0 0 1-.322-.106l-9.287-6.9h4.853m6.313 7.006c.116-.326.13-.694.007-1.058L9.79 1.76a1.722 1.722 0 0 0-.007-.02h6.034a.54.54 0 0 1 .512.366l6.562 19.445a.54.54 0 0 1-.338.684"/></svg>
+        <div><span class="az-k">Betrieben auf</span><b>Microsoft Azure</b></div>
+        <ul><li>Container Apps</li><li>Azure OpenAI</li><li>AI Search</li><li>AI Foundry</li><li>Speech to Text</li><li>Log Analytics</li><li>Static Web Apps</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <figure class="reveal g-wide">
+      <button class="zoom" data-full="/assets/img/PT4_Foto2_UI_Live.png" aria-label="Weboberfläche vergrössern"><img src="/assets/img/PT4_Foto2_UI_Live.png" alt="Weboberfläche des Systems mit erkanntem Fehler in Produktionsplanungsdaten und einem KI-generierten Korrekturvorschlag." loading="lazy"></button>
+      <figcaption><b>Das System in Aktion.</b> Geladener Snapshot, erkannter Fehler, erzeugter Korrekturvorschlag.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+    </figure>
+    <figure class="reveal">
+      <button class="zoom" data-full="/assets/img/PT4_Foto4_HumanInTheLoop.png" aria-label="Review Board vergrössern"><img src="/assets/img/PT4_Foto4_HumanInTheLoop.png" alt="Review Board mit bestehendem und vorgeschlagenem Wert sowie Möglichkeiten zum Freigeben, Ablehnen oder Anpassen einer KI-generierten Korrektur." loading="lazy"></button>
+      <figcaption><b>Human-in-the-Loop.</b> Kritische Änderungen gehen erst nach Freigabe durch eine Fachperson ins System. Freigegebene Entscheidungen dienen später als Präzedenzfälle.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+    </figure>
+    <figure class="reveal">
+      <button class="zoom" data-full="/assets/img/PT4_Foto5_Azure_Infrastructure.png" aria-label="Infrastruktur vergrössern"><img src="/assets/img/PT4_Foto5_Azure_Infrastructure.png" alt="Architekturdiagramm der Azure-Cloud-Infrastruktur des Multi-Agenten-Systems mit Container-Betrieb, Secret-Verwaltung, Logging und Monitoring." loading="lazy"></button>
+      <figcaption><b>Die Infrastruktur.</b> Vollständig als Code mit Terraform beschrieben: Container, Secrets, Logging, Monitoring, CI/CD.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="caps-head reveal"><span class="eyebrow">Was dafür gebaut wurde</span></div>
+  <div class="caps">
+    <article class="reveal"><h3>Software Engineering</h3><p>Backend und APIs, Integration mit dem Planungssystem, Fehlerbehandlung und mehrere Verarbeitungspipelines.</p></article>
+    <article class="reveal"><h3>AI Engineering</h3><p>Agenten-Orchestrierung, RAG, regelbasierte Wissensbereitstellung und schemageprüfte KI-Korrekturen.</p></article>
+    <article class="reveal"><h3>Cloud Engineering</h3><p>Container, Infrastructure as Code, Secret Management, Logging, Monitoring und automatisiertes Deployment.</p></article>
+    <article class="reveal"><h3>User Interface</h3><p>Chat, Visualisierung des Ablaufs, Prüfung von Änderungen und verständliche Darstellung der Ergebnisse.</p></article>
+    <article class="reveal"><h3>Qualität &amp; Forschung</h3><p>Testreihen gegen das echte System, Ablaufprotokolle und ein wissenschaftlicher Architekturvergleich.</p></article>
+  </div>
+
+  <p class="caps-note reveal">Die KI übernimmt dort, wo Interpretation und Schlussfolgerungen nötig sind. Kritische Datenänderungen bleiben technisch abgesichert.</p>
+</section>
+
+<!-- ───────────── LESSONS ───────────── -->
+<section class="sec wrap" id="lessons">
+  <div class="sec-head reveal"><span class="num">05</span><span class="eyebrow">Lessons Learned</span></div>
+  <h2 class="reveal wide">Was die Praxis <em>gezeigt hat.</em></h2>
+  <div class="lessons">
+    <article class="reveal"><span class="n">i</span><h3>Erfolg braucht einen Nachweis.</h3><p>Ein fehlender Fehlerhinweis bedeutet noch keinen erfolgreichen Durchlauf. Erst die erneute Validierung zeigt, ob eine Korrektur tatsächlich funktioniert hat.</p></article>
+    <article class="reveal"><span class="n">ii</span><h3>Der richtige Kontext entscheidet.</h3><p>Ein KI-Modell kann nur mit den Informationen arbeiten, die es erhält. Entscheidend sind die relevanten Daten, ihre Zusammenhänge und die passenden Regeln.</p></article>
+    <article class="reveal"><span class="n">iii</span><h3>Korrektur ist ein iterativer Prozess.</h3><p>Eine Änderung kann weitere Fehler sichtbar machen. Deshalb müssen Korrekturen erneut geprüft und bei Bedarf in mehreren Durchläufen verbessert werden.</p></article>
+    <article class="reveal"><span class="n">iv</span><h3>Falsch ist nicht gleich halluziniert.</h3><p>Eine Korrektur kann vom erwarteten Referenzwert abweichen und trotzdem durch die Daten begründet sein. Nicht jede Abweichung ist eine Halluzination.</p></article>
+    <article class="reveal"><span class="n">v</span><h3>Stabil heißt nicht richtig.</h3><p>Ein KI-System kann mehrfach dieselbe Entscheidung treffen und dennoch falsch liegen. Wiederholbarkeit allein sagt nichts über die fachliche Korrektheit aus.</p></article>
+    <article class="reveal"><span class="n">vi</span><h3>Die Anwendung ist mehr als die KI.</h3><p>Erst das Zusammenspiel spezialisierter Agenten, verlässlicher Prüfungen, technischer Schnittstellen und nachvollziehbarer Abläufe macht aus KI-Antworten eine nutzbare Lösung.</p></article>
+  </div>
+</section>
+
+<!-- ───────────── FORSCHUNG ───────────── -->
+<section class="sec wrap" id="forschung">
+  <div class="sec-head reveal"><span class="num">06</span><span class="eyebrow">Forschung · Bachelorarbeit 2026</span></div>
+  <div class="research reveal">
+    <div>
+      <h2>Wie zuverlässig arbeitet <em>das System?</em></h2>
+      <p>Im Rahmen meiner Bachelorarbeit habe ich untersucht, wie sich unterschiedliche KI-Systemarchitekturen
+        auf Korrektheit, Stabilität und Nachvollziehbarkeit automatisierter Datenkorrekturen auswirken.</p>
+      <p class="r-key"><b>Die wichtigste Erkenntnis:</b> Den größten Mehrwert für die fachliche Korrektheit
+        brachte die gezielte Bereitstellung relevanten Wissens. Die graphbasierte Orchestrierung verbesserte vor
+        allem die Nachvollziehbarkeit der Entscheidungen und Abläufe.</p>
+      <a class="btn primary" href="/project/thesis/">Zur vollständigen Bachelorarbeit <span class="arr">↗</span></a>
+    </div>
+    <div class="r-stats">
+      <div><b data-count="17">17</b><span>Testfälle</span></div>
+      <div><b data-count="3">3</b><span>Messbedingungen</span></div>
+      <div><b data-count="255">255</b><span>Messläufe</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>© 2026 Ahmad Alsayad</span>
+  <span><a href="/">Start</a> · <a href="/project/thesis/">Thesis</a></span>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Abbildung">
+  <button class="lb-close" aria-label="Schliessen">✕</button>
+  <img alt="">
+</dialog>
+
+<script src="/assets/js/project.js?v=8"></script>
+</body>
+</html>
