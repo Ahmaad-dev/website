@@ -2,6 +2,7 @@
 (function () {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const NS = 'http://www.w3.org/2000/svg';
+  const EN = document.documentElement.lang === 'en';   // Sprache aus <html lang="…">
 
   /* ── Einblenden ── */
   const io = new IntersectionObserver(es => es.forEach(e => {
@@ -20,7 +21,7 @@
   }, { passive: true });
 
   /* ── Zähler ── */
-  const fmt = n => n.toLocaleString('de-DE');
+  const fmt = n => n.toLocaleString(EN ? 'en-US' : 'de-DE');
   const cio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     cio.unobserve(e.target);
@@ -128,6 +129,30 @@
       ['Websuche', [['user', 'orch', '„Gibt es dazu aktuelle Informationen?“'], ['orch', 'web', 'Bedarf erkannt: Websearch-Agent zuschalten'], ['web', 'www', 'Suche in öffentlichen Quellen'], ['www', 'web', 'Treffer'], ['web', 'orch', 'zusammengefasste Ergebnisse'], ['orch', 'user', 'Antwort mit externem Wissen']]],
       ['E-Mail', [['user', 'orch', '„Schick den Bericht an die Betriebsleitung.“'], ['orch', 'mail', 'E-Mail-Agent bereitet Entwurf vor'], ['mail', 'orch', 'Entwurf mit Bericht'], ['orch', 'user', 'Vorschau zur Freigabe'], ['user', 'orch', '„Absenden.“'], ['orch', 'mail', 'Versand ausdrücklich angewiesen'], ['mail', 'rcpt', 'E-Mail mit Bericht verschickt']]]
     ];
+    // Englische Fassung: Name, Untertitel, Kategorie, Beschreibung, Technik
+    if (EN) {
+      const T = {
+        user: ['Domain expert', '', 'Human in the loop', 'Sends requests via chat, reviews correction proposals and approves critical changes.', 'Web interface · Review Board'],
+        orch: ['Orchestrator', 'COORDINATION', 'Agent · Coordination', 'Primary interface to the domain expert. Recognises the intent behind a request, plans the necessary steps and delegates them – context-aware via LLM instead of fixed if-then rules.', 'Azure OpenAI GPT-4.1'],
+        rag: ['RAG Agent', 'KNOWLEDGE', 'Agent · Knowledge', 'Searches a knowledge base of production documents and validation rule sets. The rules are written in natural language and can be maintained by experts without programming skills.', 'Azure AI Search'],
+        sp: ['Smart Planning Agent', 'PLANNING', 'Agent · Operational core', 'Fetches snapshots from the planning system, checks them with its validation, analyses errors, generates structured corrections, applies them and writes them back.', '10 tools · 4 pipelines · Smart Planning API'],
+        chat: ['Chat Agent', 'DIALOGUE', 'Agent · Dialogue', 'Handles questions that need neither search nor system access: explaining error classes and putting corrections into domain context.', 'Azure OpenAI GPT-4.1'],
+        web: ['Websearch Agent', 'ON DEMAND', 'Agent · Research, on demand only', 'Only activated when a question needs knowledge from outside the company – such as current information from the web. Internal questions stay with the RAG agent.', 'Web search · only when requested by the orchestrator'],
+        mail: ['Email Agent', 'COMMUNICATION', 'Agent · Communication', 'Prepares emails with reports or correction details, for example for managers or plant management. Draft, revision and preview – nothing is sent without explicit instruction.', 'Multiple recipients · CC · link to the report'],
+        kb: ['Knowledge base', '', 'Data source', 'Production documents and validation rule sets, indexed for full-text, semantic and vector search.', 'Azure AI Search'],
+        api: ['Smart Planning', '', 'Target system', 'The production planning system: provides snapshots and their validation, accepts corrected snapshots and validates them again.', 'REST API · validation engine'],
+        www: ['Internet', '', 'External source', 'Public sources, consulted only when internal knowledge is not enough.', 'Web search'],
+        rcpt: ['Recipients', '', 'Responsible parties', 'For example managers or plant management: they receive the report and correction details by email.', 'Email · also to multiple recipients']
+      };
+      N.forEach(n => { const t = T[n[0]]; if (t) [n[1], n[2], n[4], n[5], n[6]] = t; });
+      SCN.splice(0, SCN.length,
+        ['Correction', [['user', 'orch', '“Correct this snapshot.”'], ['orch', 'sp', 'Task for the Smart Planning Agent'], ['sp', 'api', 'Fetch and validate the snapshot'], ['api', 'sp', 'Validation messages returned'], ['sp', 'api', 'Apply correction, write back, revalidate'], ['sp', 'orch', 'Result and report'], ['orch', 'user', 'Summary for the domain expert']]],
+        ['Knowledge query', [['user', 'orch', '“Which rule applies here?”'], ['orch', 'rag', 'Request to the RAG agent'], ['rag', 'kb', 'Search rule sets and documents'], ['kb', 'rag', 'Matching passages'], ['rag', 'orch', 'Relevant knowledge'], ['orch', 'user', 'Answer based on the knowledge base']]],
+        ['Question', [['user', 'orch', '“What does this error class mean?”'], ['orch', 'chat', 'Request domain context'], ['chat', 'orch', 'Explanation'], ['orch', 'user', 'Answer in the dialogue']]],
+        ['Web search', [['user', 'orch', '“Is there any current information on this?”'], ['orch', 'web', 'Need detected: activate the Websearch Agent'], ['web', 'www', 'Search public sources'], ['www', 'web', 'Results'], ['web', 'orch', 'Summarised results'], ['orch', 'user', 'Answer with external knowledge']]],
+        ['Email', [['user', 'orch', '“Send the report to plant management.”'], ['orch', 'mail', 'Email Agent prepares a draft'], ['mail', 'orch', 'Draft with report'], ['orch', 'user', 'Preview for approval'], ['user', 'orch', '“Send it.”'], ['orch', 'mail', 'Sending explicitly instructed'], ['mail', 'rcpt', 'Email with report sent']]]
+      );
+    }
     const byKey = Object.fromEntries(N.map(n => [n[0], n]));
     let L, W, H, s, nodeEl = {}, edgeEl = {}, pulse, trail;
 
@@ -171,7 +196,8 @@
           b.innerHTML = IC[n[0]] + `<span class="in"><span class="nm" style="font-size:${Math.max(11, 13 * Math.min(1, s * 1.1))}px">${n[1]}</span></span>`;
         } else {
           const fs = Math.max(12, d * (n[3] === 'core' ? .15 : .13));
-          const nm = n[1].replace('Smart-Planning-Agent', 'Smart-Planning-<br>Agent').replace('Websearch-Agent', 'Websearch-<br>Agent').replace('E-Mail-Agent', 'E-Mail-<br>Agent');
+          // Lange Agentennamen vor „Agent“ umbrechen (DE: mit Bindestrich, EN: mit Leerzeichen)
+          const nm = n[1].length > 11 ? n[1].replace(/-Agent$/, '-<br>Agent').replace(/ Agent$/, '<br>Agent') : n[1];
           b.innerHTML = `<span class="in"><span class="nm" style="font-size:${fs}px">${nm}</span><span class="sb" style="font-size:${Math.max(9, fs * .42)}px">${n[2]}</span></span>`;
         }
         b.addEventListener('pointerenter', () => focus(n[0]));
@@ -261,6 +287,23 @@
     ['evaluation', 'Ergebnis bewerten', 0, 'Entscheidet begründet: fertig, nächste Runde – oder ein ehrliches „unsicher“ statt einer erfundenen Korrektur.'],
     ['answer', 'Antwort erstellen', 0, 'Fasst den Lauf für die Fachperson zusammen. Der vollständige Zustand wird als Ablaufspur abgelegt.']
   ];
+  if (EN) {
+    const T = [
+      ['Analyse input', 'Reads the snapshot’s validation messages and records what the run is dealing with.'],
+      ['Classify error', 'Selects the error to handle, determines the search parameters and proposes matching rule cards. This is where it becomes visible which error was prioritised – and why.'],
+      ['Search context', 'Runs the search in the snapshot and stores which data excerpt the model actually saw – including a checksum.'],
+      ['Match rules', 'Resolves the proposed rule cards and logs which rules were actually loaded.'],
+      ['Generate correction', 'Produces a structured correction proposal from context and rules.'],
+      ['Technical check', 'Checks the proposal against the schema. Invalid proposals are revised by the model within a limited number of attempts – otherwise it goes straight to evaluation.'],
+      ['Apply & revalidate', 'Applies the correction, writes the snapshot back and triggers a new validation in the target system – only its result counts.'],
+      ['Evaluate result', 'Decides with a reason: done, next round – or an honest “uncertain” instead of an invented correction.'],
+      ['Compose answer', 'Summarises the run for the domain expert. The complete state is stored as an execution trace.']
+    ];
+    N.forEach((n, i) => { [n[1], n[3]] = T[i]; });
+  }
+  const TX = EN
+    ? { invalid: 'Schema invalid', next: '↺ next round', round: 'Round 2', llm: 'LLM call', det: 'deterministic', pause: '❚❚ Pause', play: '▶ Play' }
+    : { invalid: 'Schema ungültig', next: '↺ nächste Runde', round: 'Runde 2', llm: 'LLM-Aufruf', det: 'deterministisch', pause: '❚❚ Pause', play: '▶ Abspielen' };
   const SEQ = [0, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 8];
   const svg = document.getElementById('pipeSvg'), detail = document.getElementById('pipeDetail'), btn = document.getElementById('pipePlay');
   if (svg) {
@@ -287,9 +330,9 @@
       const [a6, a8, a2] = [pos[5], pos[7], pos[1]];
       if (!vertical) {
         el('path', { class: 'e skip', d: `M${a6[0]},${a6[1] - R - 4} C${a6[0] + 40},${a6[1] - 90} ${a8[0] - 40},${a8[1] - 90} ${a8[0]},${a8[1] - R - 4}` });
-        el('text', { class: 'elab', x: (a6[0] + a8[0]) / 2, y: a6[1] - 78, 'text-anchor': 'middle' }).textContent = 'Schema ungültig';
+        el('text', { class: 'elab', x: (a6[0] + a8[0]) / 2, y: a6[1] - 78, 'text-anchor': 'middle' }).textContent = TX.invalid;
         el('path', { class: 'e back', d: `M${a8[0]},${a8[1] + R + 48} C${a8[0] - 40},${a8[1] + 150} ${a2[0] + 40},${a2[1] + 150} ${a2[0]},${a2[1] + R + 48}` });
-        el('text', { class: 'elab', x: (a8[0] + a2[0]) / 2, y: a8[1] + 148, 'text-anchor': 'middle', fill: '#44d1bd' }).textContent = '↺ nächste Runde';
+        el('text', { class: 'elab', x: (a8[0] + a2[0]) / 2, y: a8[1] + 148, 'text-anchor': 'middle', fill: '#44d1bd' }).textContent = TX.next;
       } else {
         el('path', { class: 'e skip', d: `M${a6[0] + R + 4},${a6[1]} C${a6[0] + 70},${a6[1] + 20} ${a8[0] + 70},${a8[1] - 20} ${a8[0] + R + 4},${a8[1]}` });
         el('path', { class: 'e back', d: `M${a8[0] - R - 4},${a8[1]} C${a8[0] - 62},${a8[1] - 60} ${a2[0] - 62},${a2[1] + 60} ${a2[0] - R - 4},${a2[1]}` });
@@ -321,13 +364,13 @@
       nodesEl.forEach((g, j) => { g.classList.toggle('active', j === i); g.classList.toggle('sel', selected && j === i); });
       halo.setAttribute('cx', pos[i][0]); halo.setAttribute('cy', pos[i][1]);
       const n = N[i];
-      const round = !selected && idx >= 8 ? '<span class="tag">Runde 2</span>' : '';
-      detail.innerHTML = `<h4><span class="k">${String(i + 1).padStart(2, '0')}</span>${n[1]} <span class="tag ${n[2] ? 'llm' : 'det'}">${n[2] ? 'LLM-Aufruf' : 'deterministisch'}</span>${round}</h4><p>${n[3]}</p>`;
+      const round = !selected && idx >= 8 ? '<span class="tag">' + TX.round + '</span>' : '';
+      detail.innerHTML = `<h4><span class="k">${String(i + 1).padStart(2, '0')}</span>${n[1]} <span class="tag ${n[2] ? 'llm' : 'det'}">${n[2] ? TX.llm : TX.det}</span>${round}</h4><p>${n[3]}</p>`;
     }
     function tick() { idx = (idx + 1) % SEQ.length; show(SEQ[idx], false); }
     function setPlaying(p) {
       playing = p; clearInterval(timer);
-      btn.textContent = p ? '❚❚ Pause' : '▶ Abspielen'; btn.setAttribute('aria-pressed', p);
+      btn.textContent = p ? TX.pause : TX.play; btn.setAttribute('aria-pressed', p);
       if (p) { sel = null; timer = setInterval(tick, 1500); }
     }
     btn.addEventListener('click', () => setPlaying(!playing));

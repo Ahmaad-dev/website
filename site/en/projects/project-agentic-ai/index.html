@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic AI Project</title>
+<meta name="description" content="Agentic AI for Smart Manufacturing: a multi-agent system that checks production planning data, analyses errors, corrects them based on rules and documents the results.">
+<meta name="theme-color" content="#07090b">
+<link rel="alternate" hreflang="de" href="https://ahmadalsayad.com/projects/project-agentic-ai/">
+<link rel="alternate" hreflang="en" href="https://ahmadalsayad.com/en/projects/project-agentic-ai/">
+<link rel="alternate" hreflang="x-default" href="https://ahmadalsayad.com/projects/project-agentic-ai/">
+<meta property="og:title" content="Agentic AI for Smart Manufacturing – Ahmad Alsayad">
+<meta property="og:image" content="/assets/img/PT4_Foto1_AgenticAI_Titelbild.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090b'/%3E%3Ccircle cx='10' cy='11' r='3' fill='%2344d1bd'/%3E%3Ccircle cx='22' cy='9' r='2' fill='%23e9eeeb'/%3E%3Ccircle cx='19' cy='22' r='3' fill='%23e9eeeb'/%3E%3Cpath d='M10 11 22 9M10 11l9 11M22 9l-3 13' stroke='%2344d1bd' stroke-width='1.2' opacity='.7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css?v=9">
+<link rel="stylesheet" href="/assets/css/project.css?v=9">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<nav class="nav solid" aria-label="Main navigation">
+  <a class="brand" href="/en/"><i></i>HOME</a>
+  <ul>
+    <li><a class="link" href="/en/#background">Knowledge</a></li>
+    <li><span class="link off" aria-disabled="true">Projects</span></li>
+    <li><a class="link" href="/en/projects/project-agentic-ai/" aria-current="page">Agentic AI</a></li>
+    <li><a class="link" href="/en/project/thesis/">Thesis</a></li>
+  </ul>
+  <div class="lang" role="group" aria-label="Language"><a href="/projects/project-agentic-ai/" lang="de" hreflang="de">DE</a><a href="/en/projects/project-agentic-ai/" lang="en" hreflang="en" aria-current="true">EN</a></div>
+</nav>
+
+<!-- ───────────── HERO ───────────── -->
+<header class="p-hero wrap">
+  <div class="eyebrow reveal">Project · Agentic AI · Smart Manufacturing</div>
+  <h1 class="reveal">Agentic AI for<br><em>Smart Manufacturing.</em></h1>
+  <p class="claim-line reveal">Intelligent automation for complex production data.</p>
+  <div class="lede reveal">
+    <p>A multi-agent system that checks large volumes of production data, analyses errors, works out corrections
+      based on stored rules and documents the results.</p>
+    <p>The project covers the development of the AI agents, the integration of existing systems, user interfaces
+      and the provisioning of a cloud infrastructure.</p>
+  </div>
+
+  <dl class="facts reveal">
+    <div><dt>Academic partner</dt><dd>USTP St. Pölten · Smart Engineering</dd></div>
+    <div><dt>Industry partner</dt><dd>CANCOM Austria AG · Digital Makers</dd></div>
+    <div><dt>Scope</dt><dd>Concept · Implementation · Evaluation</dd></div>
+    <div><dt>Status</dt><dd><span class="dot"></span>Completed</dd></div>
+  </dl>
+</header>
+
+<figure class="hero-fig wrap reveal">
+  <button class="zoom" data-full="/assets/img/PT4_Foto1_AgenticAI_Titelbild.png" aria-label="Enlarge system overview">
+    <img src="/assets/img/PT4_Foto1_AgenticAI_Titelbild.png" alt="Visualisation of a graph-based multi-agent system that analyses, corrects and revalidates complex production planning data." width="2000" height="1125">
+  </button>
+  <figcaption>System overview: production data → multi-agent system → revalidation in the target system.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+</figure>
+
+<!-- ───────────── KEY FIGURES ───────────── -->
+<section class="wrap kpi-wrap reveal" aria-label="The work behind the project">
+  <span class="eyebrow">The work behind the project</span>
+  <div class="kpi-grid">
+    <div class="kpi-hero">
+      <canvas id="hay" aria-hidden="true"></canvas>
+      <div class="kh-text">
+        <b data-count="200000" data-prefix="&gt; ">&gt; 200,000</b>
+        <span class="kh-sub">entries in a single snapshot.</span>
+        <p>Three to five of them are wrong – and just one is enough to throw off production planning.
+          The system finds them, corrects them and has the target system validate again.</p>
+        <div class="kh-legend"><span><i class="e"></i>Error detected</span><span><i class="c"></i>corrected</span><span class="ill">Illustration</span></div>
+      </div>
+    </div>
+    <div class="kpi-side">
+      <div class="kpi-m">
+        <svg class="kv agents" viewBox="0 0 72 48" width="72" height="48" aria-hidden="true">
+          <path d="M24 24 44 6M24 24 62 14M24 24 66 32M24 24 46 43M24 24 8 40"/>
+          <circle class="c0" cx="24" cy="24" r="8.5"/><circle cx="44" cy="6" r="4.5"/><circle cx="62" cy="14" r="4.5"/><circle cx="66" cy="32" r="4.5"/><circle cx="46" cy="43" r="4.5"/><circle class="dm" cx="8" cy="40" r="4.5"/>
+        </svg>
+        <div><b data-count="6">6</b><h3>AI agents</h3><p>Orchestration, knowledge, planning, dialogue, email – and web search on demand</p></div>
+      </div>
+      <div class="kpi-m">
+        <div class="kv tools" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div><b data-count="10">10</b><h3>Tools</h3><p>Data access, validation, correction, write-back</p></div>
+      </div>
+      <div class="kpi-m">
+        <div class="kv pipes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div><b data-count="4">4</b><h3>Pipelines</h3><p>predefined flows for recurring workflows</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── PROBLEM ───────────── -->
+<section class="sec wrap" id="problem">
+  <div class="sec-head reveal"><span class="num">01</span><span class="eyebrow">The problem</span></div>
+  <div class="split">
+    <h2 class="reveal">Between error detection <em>and error correction.</em></h2>
+    <div class="reveal">
+      <p>The starting point was a production planning system in real use. Its planning states come as snapshots
+        from the ERP system: orders, material requirements, machine allocation, employee qualifications –
+        connected to almost every area of the company.</p>
+      <p>The existing planning system detects such errors, but cannot fix them on its own. The real challenge is
+        to understand the relationships and derive a correction that is right from a domain perspective.</p>
+    </div>
+  </div>
+
+  <div class="ba reveal">
+    <div class="ba-head">
+      <span class="eyebrow">A practical example</span>
+      <h3>One snapshot, three to five reported errors.</h3>
+    </div>
+    <div class="ba-cols">
+      <div class="ba-col before">
+        <span class="ba-tag"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="11" cy="14" r="2.5"/><path d="m13 16 2 2"/></svg>Before · by hand</span>
+        <b class="ba-time">2–6 <small>hours</small></b>
+        <ol>
+          <li>Read the error message and find the affected spot among more than 200,000 entries</li>
+          <li>Check relationships to articles, resources and work plans</li>
+          <li>Derive the correct value and change it by hand</li>
+          <li>Upload the snapshot, revalidate – and start over if follow-up errors appear</li>
+        </ol>
+      </div>
+      <div class="ba-arrow" aria-hidden="true">→</div>
+      <div class="ba-col after">
+        <span class="ba-tag"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V13a3 3 0 0 0 3 3h6.5"/><path d="M13 13.5 15.5 16 13 18.5"/></svg>With the system</span>
+        <b class="ba-time">2–6 <small>minutes</small></b>
+        <ol>
+          <li>Fetch the snapshot and read the validation messages</li>
+          <li>Analyse the error, load the matching data excerpt and rules</li>
+          <li>Generate a structured correction and check it technically</li>
+          <li>Apply, write back, revalidate in the target system – with a report</li>
+        </ol>
+      </div>
+    </div>
+    <p class="ba-note">Observations from project operation with snapshots containing few errors – not a controlled measurement and no guaranteed runtime.</p>
+  </div>
+
+  <p class="q-line plain reveal">Can an AI system not only analyse such data, but correct it in a targeted way – while staying transparent enough for experts to <span class="hl">trace</span> every decision?</p>
+</section>
+
+<!-- ───────────── APPROACH ───────────── -->
+<section class="sec wrap" id="approach">
+  <div class="sec-head reveal"><span class="num">02</span><span class="eyebrow">The approach</span></div>
+  <div class="split">
+    <h2 class="reveal">Not a single prompt, but <em>specialised agents</em>.</h2>
+    <div class="reveal">
+      <p>Complex production data requires different capabilities. Instead of one model that is supposed to do
+        everything, the system divides the work: an orchestrator understands the request and plans, specialists
+        handle knowledge, the planning system and dialogue. When needed, a web search for external knowledge and an
+        email agent that sends reports to the responsible people join in.</p>
+      <p>Each agent has a clearly defined task, its own tools and exactly the context it needs for it.
+        <strong>Hover over the nodes</strong> to see who does what.</p>
+    </div>
+  </div>
+
+  <div class="mesh reveal" id="mesh">
+    <div class="mesh-stage" id="meshStage">
+      <svg class="mesh-svg" id="meshSvg" aria-hidden="true"></svg>
+      <div class="mesh-tip" id="meshTip" role="tooltip"></div>
+    </div>
+    <div class="mesh-bar">
+      <div class="mesh-scn" id="meshScn" role="group" aria-label="Choose an example flow"></div>
+      <span class="mesh-step" id="meshStep" aria-live="polite"></span>
+    </div>
+  </div>
+  <ul class="sr-only">
+    <li>Orchestrator: primary interface to the domain expert, plans the steps and delegates the tasks.</li>
+    <li>RAG Agent: searches production documents and validation rule sets via Azure AI Search.</li>
+    <li>Smart Planning Agent: fetches, checks, corrects and writes back snapshots in the planning system.</li>
+    <li>Chat Agent: answers domain questions and explains error classes.</li>
+    <li>Websearch Agent: only activated when external knowledge from the web is needed.</li>
+    <li>Email Agent: prepares emails with reports and only sends them on explicit instruction.</li>
+  </ul>
+
+  <div class="together">
+    <article class="reveal"><span class="n">01</span><h3>From request to validation</h3><p>Understand the request, find knowledge, act in the planning system, explain the result – one continuous flow instead of isolated solutions.</p></article>
+    <article class="reveal"><span class="n">02</span><h3>Focused context</h3><p>An agent only gets what it needs for its task. This keeps every decision lean and verifiable.</p></article>
+    <article class="reveal"><span class="n">03</span><h3>Extensible</h3><p>New error types are added through additional rule cards; new tools and processes can be connected.</p></article>
+    <article class="reveal"><span class="n">04</span><h3>Humans stay in control</h3><p>Critical changes only enter the system after approval. Results can be shared as a report via the email agent.</p></article>
+  </div>
+
+  <div class="split note reveal">
+    <div>
+      <h3 class="serif">Breaking up the rulebook</h3>
+      <p class="note-sub">The rulebook contains the domain knowledge for the correction: which rules apply to a detected
+        error and how the correct value can be derived.</p>
+      <div class="snr" aria-label="More signal, less noise">
+        <span class="snr-t">Theory: Signal-to-Noise Ratio</span>
+        <span class="snr-k">More signal, less noise</span>
+        <div class="snr-row"><span>Entire rule set</span><i class="snr-bar noisy"><b style="width:12%"></b></i></div>
+        <div class="snr-row"><span>Matching rule cards</span><i class="snr-bar clean"><b style="width:78%"></b></i></div>
+        <small>Schematic illustration</small>
+      </div>
+    </div>
+    <p>Instead of providing the entire rule set for every correction, the knowledge was divided into a shared core
+      and modular rule cards. Depending on the detected error, the system receives exactly the relevant rules – the
+      context stays focused, and it is traceable which rules went into a correction. The rules are written in natural
+      language, so experts can maintain them without programming skills.<br><br>
+      The idea behind it: the model should not see everything, but the right things. Less, but more relevant
+      context – <strong>more signal, less noise</strong>.</p>
+  </div>
+</section>
+
+<!-- ───────────── GRAPH ───────────── -->
+<section class="sec wrap" id="graph">
+  <div class="sec-head reveal"><span class="num">03</span><span class="eyebrow">The graph</span></div>
+  <div class="split">
+    <h2 class="reveal">Complex flows, clearly traceable. <em>The process becomes a graph.</em></h2>
+    <p class="reveal">Error classification, context search, rule matching, correction generation, technical check and
+      revalidation are clearly separated nodes. Each one writes its intermediate result into a shared state. This makes
+      it possible to reconstruct afterwards what the model saw and why the flow continued or stopped.</p>
+  </div>
+
+  <div class="pipe reveal" id="pipe">
+    <div class="pipe-top">
+      <span class="mono">Graph trace with flow, rules and provenance · 9 nodes</span>
+      <button class="play" id="pipePlay" aria-pressed="true">❚❚ Pause</button>
+    </div>
+    <svg id="pipeSvg" role="img" aria-label="The correction graph with nine nodes, from input analysis to the answer, with a loop for further correction rounds"></svg>
+    <div class="pipe-detail" id="pipeDetail" aria-live="polite"></div>
+    <p class="pipe-foot"><span class="tag llm">LLM</span> Only three of the nine nodes call the language model –
+      exactly as many calls as in the previous flow. The graph is not “more AI-heavy”; it makes visible what happens between the calls.</p>
+  </div>
+
+  <figure class="shot reveal">
+    <button class="zoom" data-full="/assets/img/PT4_Foto3_GraphTrace.png" aria-label="Enlarge graph flow">
+      <img src="/assets/img/PT4_Foto3_GraphTrace.png" alt="Graph-based correction process with several processing nodes from error analysis to revalidation." loading="lazy">
+    </button>
+    <figcaption>A real run that can be replayed step by step: which rules were loaded, which context was available, what the application changed.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+  </figure>
+</section>
+
+<!-- ───────────── IN OPERATION ───────────── -->
+<section class="sec wrap" id="operation">
+  <div class="sec-head reveal"><span class="num">04</span><span class="eyebrow">In operation</span></div>
+  <div class="split">
+    <h2 class="reveal">From laptop to cloud – <em>with humans in the loop.</em></h2>
+    <div class="reveal">
+      <p>The result is not a concept, but a working overall system: deployed on Azure, operated through a web
+        interface and connected to a real production planning system.</p>
+      <p>A snapshot is loaded, validated, analysed, corrected, written back and then validated again by the target
+        system. Auditability, control and reproducibility were not added afterwards – they shaped the architecture
+        from the start.</p>
+      <div class="azure">
+        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M22.379 23.343a1.62 1.62 0 0 0 1.536-2.14v.002L17.35 1.76A1.62 1.62 0 0 0 15.816.657H8.184A1.62 1.62 0 0 0 6.65 1.76L.086 21.204a1.62 1.62 0 0 0 1.536 2.139h4.741a1.62 1.62 0 0 0 1.535-1.103l.977-2.892 4.947 3.675c.28.208.618.32.966.32m-3.084-12.531 3.624 10.739a.54.54 0 0 1-.51.713v-.001h-.03a.54.54 0 0 1-.322-.106l-9.287-6.9h4.853m6.313 7.006c.116-.326.13-.694.007-1.058L9.79 1.76a1.722 1.722 0 0 0-.007-.02h6.034a.54.54 0 0 1 .512.366l6.562 19.445a.54.54 0 0 1-.338.684"/></svg>
+        <div><span class="az-k">Running on</span><b>Microsoft Azure</b></div>
+        <ul><li>Container Apps</li><li>Azure OpenAI</li><li>AI Search</li><li>AI Foundry</li><li>Speech to Text</li><li>Log Analytics</li><li>Static Web Apps</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <figure class="reveal g-wide">
+      <button class="zoom" data-full="/assets/img/PT4_Foto2_UI_Live.png" aria-label="Enlarge web interface"><img src="/assets/img/PT4_Foto2_UI_Live.png" alt="Web interface of the system with a detected error in production planning data and an AI-generated correction proposal." loading="lazy"></button>
+      <figcaption><b>The system in action.</b> Loaded snapshot, detected error, generated correction proposal.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+    </figure>
+    <figure class="reveal">
+      <button class="zoom" data-full="/assets/img/PT4_Foto4_HumanInTheLoop.png" aria-label="Enlarge review board"><img src="/assets/img/PT4_Foto4_HumanInTheLoop.png" alt="Review board showing the existing and proposed value and options to approve, reject or adjust an AI-generated correction." loading="lazy"></button>
+      <figcaption><b>Human-in-the-loop.</b> Critical changes only enter the system after approval by an expert. Approved decisions later serve as precedents.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+    </figure>
+    <figure class="reveal">
+      <button class="zoom" data-full="/assets/img/PT4_Foto5_Azure_Infrastructure.png" aria-label="Enlarge infrastructure"><img src="/assets/img/PT4_Foto5_Azure_Infrastructure.png" alt="Architecture diagram of the multi-agent system’s Azure cloud infrastructure with container hosting, secret management, logging and monitoring." loading="lazy"></button>
+      <figcaption><b>The infrastructure.</b> Fully described as code with Terraform: containers, secrets, logging, monitoring, CI/CD.<span class="cr">© Ahmad Alsayad, CANCOM Austria AG</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="caps-head reveal"><span class="eyebrow">What was built</span></div>
+  <div class="caps">
+    <article class="reveal"><h3>Software Engineering</h3><p>Backend and APIs, integration with the planning system, error handling and several processing pipelines.</p></article>
+    <article class="reveal"><h3>AI Engineering</h3><p>Agent orchestration, RAG, rule-based knowledge provision and schema-validated AI corrections.</p></article>
+    <article class="reveal"><h3>Cloud Engineering</h3><p>Containers, infrastructure as code, secret management, logging, monitoring and automated deployment.</p></article>
+    <article class="reveal"><h3>User Interface</h3><p>Chat, visualisation of the flow, review of changes and clear presentation of the results.</p></article>
+    <article class="reveal"><h3>Quality &amp; Research</h3><p>Test series against the real system, execution logs and a scientific architecture comparison.</p></article>
+  </div>
+
+  <p class="caps-note reveal">The AI takes over where interpretation and reasoning are needed. Critical data changes remain technically safeguarded.</p>
+</section>
+
+<!-- ───────────── LESSONS ───────────── -->
+<section class="sec wrap" id="lessons">
+  <div class="sec-head reveal"><span class="num">05</span><span class="eyebrow">Lessons Learned</span></div>
+  <h2 class="reveal wide">What practice <em>has shown.</em></h2>
+  <div class="lessons">
+    <article class="reveal"><span class="n">i</span><h3>Success needs proof.</h3><p>A missing error message does not mean a successful run. Only revalidation shows whether a correction actually worked.</p></article>
+    <article class="reveal"><span class="n">ii</span><h3>The right context decides.</h3><p>An AI model can only work with the information it receives. What matters are the relevant data, their relationships and the matching rules.</p></article>
+    <article class="reveal"><span class="n">iii</span><h3>Correction is an iterative process.</h3><p>One change can reveal further errors. That is why corrections have to be checked again and, if needed, improved over several runs.</p></article>
+    <article class="reveal"><span class="n">iv</span><h3>Wrong is not the same as hallucinated.</h3><p>A correction can deviate from the expected reference value and still be justified by the data. Not every deviation is a hallucination.</p></article>
+    <article class="reveal"><span class="n">v</span><h3>Stable does not mean correct.</h3><p>An AI system can make the same decision several times and still be wrong. Repeatability alone says nothing about domain correctness.</p></article>
+    <article class="reveal"><span class="n">vi</span><h3>The application is more than the AI.</h3><p>Only the interplay of specialised agents, reliable checks, technical interfaces and traceable flows turns AI answers into a usable solution.</p></article>
+  </div>
+</section>
+
+<!-- ───────────── RESEARCH ───────────── -->
+<section class="sec wrap" id="research">
+  <div class="sec-head reveal"><span class="num">06</span><span class="eyebrow">Research · Bachelor’s thesis 2026</span></div>
+  <div class="research reveal">
+    <div>
+      <h2>How reliably does <em>the system work?</em></h2>
+      <p>In my bachelor’s thesis, I examined how different AI system architectures affect the correctness, stability
+        and traceability of automated data corrections.</p>
+      <p class="r-key"><b>The key finding:</b> The greatest benefit for domain correctness came from the targeted
+        provision of relevant knowledge. Graph-based orchestration mainly improved the traceability of decisions and
+        processes.</p>
+      <a class="btn primary" href="/en/project/thesis/">To the full thesis <span class="arr">↗</span></a>
+    </div>
+    <div class="r-stats">
+      <div><b data-count="17">17</b><span>test cases</span></div>
+      <div><b data-count="3">3</b><span>measurement conditions</span></div>
+      <div><b data-count="255">255</b><span>measurement runs</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>© 2026 Ahmad Alsayad</span>
+  <span><a href="/en/">Home</a> · <a href="/en/project/thesis/">Thesis</a></span>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Figure">
+  <button class="lb-close" aria-label="Close">✕</button>
+  <img alt="">
+</dialog>
+
+<script src="/assets/js/project.js?v=9"></script>
+</body>
+</html>

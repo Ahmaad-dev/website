@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#07090b">
+<meta http-equiv="refresh" content="8; url=/en/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090b'/%3E%3Ccircle cx='10' cy='11' r='3' fill='%2344d1bd'/%3E%3Ccircle cx='22' cy='9' r='2' fill='%23e9eeeb'/%3E%3Ccircle cx='19' cy='22' r='3' fill='%23e9eeeb'/%3E%3Cpath d='M10 11 22 9M10 11l9 11M22 9l-3 13' stroke='%2344d1bd' stroke-width='1.2' opacity='.7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css?v=9">
+<style>
+  body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:radial-gradient(55% 45% at 50% 40%,rgba(37,158,143,.14),transparent 70%),var(--bg)}
+  .center{flex:1;display:grid;place-items:center;text-align:center;padding:120px 24px 60px}
+  .center h1{font-family:var(--serif);font-weight:400;font-size:clamp(64px,13vw,170px);line-height:.92;margin:18px 0 0;letter-spacing:-.02em}
+  .center h1 em{font-style:italic;color:var(--accent)}
+  .center p{color:var(--ink-2);margin:22px auto 34px;max-width:520px}
+  .pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber-ink);box-shadow:0 0 12px var(--amber-ink);margin-right:10px;vertical-align:1px;animation:bl 2.4s infinite}
+  @keyframes bl{50%{opacity:.25}}
+  .count{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 22px}
+  .count b{color:var(--accent);font-weight:500}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<main class="center">
+  <div>
+    <div class="eyebrow">stop_uncertain</div>
+    <h1>4<em>0</em>4</h1>
+    <p>No reliable result – this page does not exist.<br>Better an honest no than an invented answer.</p>
+    <p class="count" aria-live="polite">Back to the homepage in <b id="sec">6</b> seconds …</p>
+    <a class="btn primary" href="/en/">To the homepage <span class="arr">→</span></a>
+  </div>
+</main>
+<script>
+  // Nach 6 Sekunden zur Startseite (Rückfall ohne JavaScript: meta refresh nach 8 Sekunden)
+  (function(){var n=6,el=document.getElementById('sec');var t=setInterval(function(){n--;if(el)el.textContent=n;if(n<=0){clearInterval(t);location.replace('/en/')}},1000);})();
+</script>
+</body>
+</html>
