@@ -1,0 +1,11 @@
+// Cloudflare Workers: statische Website aus dem Ordner site/
+// Der Name muss dem Projektnamen in Cloudflare entsprechen.
+{
+  "name": "ahmadalsayad",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
