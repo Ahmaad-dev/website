@@ -1,20 +1,19 @@
 /* Thesis-Seite: Zähler und Diagramm der Studie */
 (function () {
-  const Motion = window.SiteMotion;
-  const requestAnimationFrame = Motion.frame, cancelAnimationFrame = Motion.cancel;
-  let reduce = Motion.reduced;
-  Motion.change(() => { reduce = Motion.reduced; });
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.querySelectorAll('[data-count]').forEach(el => Motion.once(el, () => {
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
     if (reduce) return;
-    const end = +el.dataset.count, t0 = performance.now(), D = 1600;
+    const el = e.target, end = +el.dataset.count, t0 = performance.now(), D = 1600;
     (function tick(t) {
       const k = Math.min(1, (t - t0) / D);
       el.textContent = Math.round(end * (1 - Math.pow(1 - k, 4))).toLocaleString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE');
-      if (reduce) { el.textContent = end.toLocaleString(document.documentElement.lang === 'en' ? 'en-US' : 'de-DE'); return; }
       if (k < 1) requestAnimationFrame(tick);
     })(t0);
-  }, { threshold: .6 }));
+  }), { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
   const EN = document.documentElement.lang === 'en';
   const X = EN ? { full: 'full rule set', cards: 'rule cards', path: 'path-exact', func: 'functional', of: 'of' } : { full: 'Regelwerk am Stück', cards: 'Regelkarten', path: 'pfadgenau', func: 'funktional', of: 'von' };
@@ -35,7 +34,7 @@
   ax.innerHTML = '<span></span><div>' + [0, 25, 50, 75, 100, 125, 145].map(v => `<span style="left:${v / MAX * 100}%">${v}</span>`).join('') + '</div>';
   bars.after(ax);
   const grow = () => chart.querySelectorAll('.bar').forEach((b, i) => setTimeout(() => b.style.width = b.dataset.w + '%', reduce ? 0 : i * 90));
-  Motion.once(chart, grow, { threshold: .1 });
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { o.disconnect(); grow(); } }), { threshold: 0.4 }).observe(chart);
   chart.querySelectorAll('.bar').forEach(b => {
     b.addEventListener('pointerenter', () => { tip.innerHTML = b.dataset.t; tip.style.opacity = 1; });
     b.addEventListener('pointermove', e => { const r = chart.getBoundingClientRect(); tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top - 8) + 'px'; });

@@ -3,7 +3,6 @@
 {
   "name": "ahmadalsayad",
   "compatibility_date": "2025-06-01",
-  "previews": {},
   "assets": {
     "directory": "./site",
     "not_found_handling": "404-page",

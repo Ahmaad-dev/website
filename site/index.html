@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css?v=10">
+<link rel="stylesheet" href="/assets/css/site.css?v=9">
 <style>
   #net{position:fixed;inset:0;width:100%;height:100%;z-index:0}
   .glow{
@@ -233,17 +233,19 @@
 </footer>
 </div>
 
-<script src="/assets/js/motion.js?v=10"></script>
-<script src="/assets/js/network.js?v=10"></script>
+<script src="/assets/js/network.js?v=9"></script>
 <script>
 (function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Navigation bekommt beim Scrollen einen Hintergrund
   const nav=document.querySelector('.nav');
   const navUpd=()=>nav.classList.toggle('solid',scrollY>40);
   addEventListener('scroll',navUpd,{passive:true});navUpd();
 
   // Einblenden
-  document.querySelectorAll('.reveal').forEach((el,i)=>SiteMotion.reveal(el,(i%4)*70,{threshold:.12,rootMargin:'0px 0px -40px 0px'}));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
 
   // Lichtkegel auf den Fokuskarten
   document.querySelectorAll('.f').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')}));

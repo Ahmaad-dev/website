@@ -1,57 +1,53 @@
 /* Projektseite: Einblenden, Fortschritt, Zähler, Agenten-Netz, Pipeline-Animation, Lightbox */
 (function () {
-  const Motion = window.SiteMotion;
-  const requestAnimationFrame = Motion.frame, cancelAnimationFrame = Motion.cancel;
-  let reduce = Motion.reduced;
-  Motion.change(() => { reduce = Motion.reduced; });
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const NS = 'http://www.w3.org/2000/svg';
   const EN = document.documentElement.lang === 'en';   // Sprache aus <html lang="…">
 
   /* ── Einblenden ── */
-  document.querySelectorAll('.reveal').forEach((el, i) => Motion.reveal(el, (i % 4) * 70, { threshold: .12, rootMargin: '0px 0px -40px 0px' }));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 70) + 'ms';
+    io.observe(el);
+  });
 
   /* ── Lesefortschritt ── */
   const bar = document.querySelector('.progress i');
   addEventListener('scroll', () => {
     const h = document.documentElement;
-    if (bar) bar.style.width = (100 * h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) + '%';
+    bar.style.width = (100 * h.scrollTop / (h.scrollHeight - h.clientHeight)) + '%';
   }, { passive: true });
 
   /* ── Zähler ── */
   const fmt = n => n.toLocaleString(EN ? 'en-US' : 'de-DE');
-  document.querySelectorAll('[data-count]').forEach(el => Motion.once(el, () => {
-    const end = +el.dataset.count, pre = el.dataset.prefix ? el.dataset.prefix.replace('&gt;', '>') : '';
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    const el = e.target, end = +el.dataset.count, pre = el.dataset.prefix ? el.dataset.prefix.replace('&gt;', '>') : '';
     if (reduce) return;
     const t0 = performance.now(), D = 1600;
     (function tick(t) {
       const k = Math.min(1, (t - t0) / D), v = Math.round(end * (1 - Math.pow(1 - k, 4)));
       el.textContent = pre + fmt(v);
-      if (reduce) { el.textContent = pre + fmt(end); return; }
       if (k < 1) requestAnimationFrame(tick);
     })(t0);
-  }, { threshold: .6 }));
+  }), { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
   /* ── Heuhaufen: Punktfeld, Scan, wenige Fehler werden gefunden und korrigiert ── */
-  Motion.init(function hay() {
+  (function hay() {
     const cv = document.getElementById('hay'); if (!cv) return;
-    const ctx = Motion.context(cv); if (!ctx) return;
-    const budget = Motion.budget();
-    const field = document.createElement('canvas'), fieldCtx = Motion.context(field);
-    if (!fieldCtx) return;
+    const ctx = cv.getContext('2d');
     let w, h, dpr, pts = [], errs = [], t0 = performance.now(), raf, vis = false;
     const GAP = 10, CYCLE = 7000;
     function setup() {
-      dpr = Math.min(2, devicePixelRatio || 1) * budget.scale;
+      dpr = Math.min(2, devicePixelRatio || 1);
       w = cv.clientWidth; h = cv.clientHeight;
       cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       pts = [];
       for (let y = GAP / 2; y < h; y += GAP) for (let x = GAP / 2; x < w; x += GAP) pts.push([x + (Math.random() - .5) * 2, y + (Math.random() - .5) * 2, .05 + Math.random() * .12]);
-      field.width = cv.width; field.height = cv.height;
-      fieldCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      for (const [x, y, a] of pts) {
-        fieldCtx.fillStyle = `rgba(232,240,236,${a})`;
-        fieldCtx.fillRect(x - .8, y - .8, 1.6, 1.6);
-      }
       const narrow = w < 560;
       errs = [];
       const n = 5;
@@ -62,16 +58,12 @@
       }
     }
     function draw(now) {
-      const started = performance.now();
       const k = ((now - t0) % CYCLE) / CYCLE;              // 0..1 je Durchlauf
       const sx = reduce ? w * 2 : -60 + (w + 120) * Math.min(1, k / .7); // Scanposition
       ctx.clearRect(0, 0, w, h);
-      if (field.width && field.height) ctx.drawImage(field, 0, 0, w, h);
       for (const [x, y, a] of pts) {
-        const d = Math.abs(x - sx);
-        if (d >= 70) continue;
-        const boost = d < 70 ? (1 - d / 70) * .5 : 0;
-        ctx.fillStyle = `rgba(232,240,236,${boost / (1 - a)})`;
+        const d = Math.abs(x - sx), boost = d < 70 ? (1 - d / 70) * .5 : 0;
+        ctx.fillStyle = `rgba(232,240,236,${a + boost})`;
         ctx.fillRect(x - .8, y - .8, 1.6, 1.6);
       }
       if (!reduce && k < .7) {
@@ -80,7 +72,7 @@
         ctx.fillStyle = g; ctx.fillRect(sx - 60, 0, 64, h);
         ctx.fillStyle = 'rgba(68,209,189,.7)'; ctx.fillRect(sx, 0, 1, h);
       }
-      const fade = !reduce && k > .92 ? 1 - (k - .92) / .08 : 1;
+      const fade = k > .92 ? 1 - (k - .92) / .08 : 1;
       errs.forEach(([x, y]) => {
         const passed = reduce ? 1 : (sx - x);
         if (passed < 0) return;
@@ -96,18 +88,15 @@
         ctx.shadowBlur = 0;
       });
       if (k > .995) setup();
-      if (budget.sample(performance.now() - started)) setup();
-      if (!reduce && vis && !document.hidden) raf = requestAnimationFrame(draw);
+      if (!reduce && vis) raf = requestAnimationFrame(draw);
     }
     setup(); draw(performance.now());
-    const resume = () => { cancelAnimationFrame(raf); draw(performance.now()); };
-    Motion.observe(cv, visible => { vis = visible; resume(); }, { threshold: .1 });
-    Motion.change(resume);
-    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { setup(); resume(); }, 150); });
-  });
+    new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; cancelAnimationFrame(raf); if (vis && !reduce) raf = requestAnimationFrame(draw); }), { threshold: .1 }).observe(cv);
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { setup(); draw(performance.now()); }, 150); });
+  })();
 
   /* ── Agenten-Netz ── */
-  Motion.init(function mesh() {
+  (function mesh() {
     const box = document.getElementById('mesh'); if (!box) return;
     const stage = document.getElementById('meshStage'), svg = document.getElementById('meshSvg'),
       tip = document.getElementById('meshTip'), scnBox = document.getElementById('meshScn'), stepEl = document.getElementById('meshStep');
@@ -191,6 +180,7 @@
         const [A, B] = ends(a, b);
         const d = `M${A.x},${A.y} L${B.x},${B.y}`;
         edgeEl[ek(a, b)] = [mk('path', { class: 'ed', d }, svg), mk('path', { class: 'fl', d }, svg)];
+        if (reduce) edgeEl[ek(a, b)][1].style.animation = 'none';
       });
       trail = mk('circle', { r: 9, fill: '#44d1bd', opacity: 0, filter: 'url(#glow)' }, svg);
       pulse = mk('circle', { r: 4.2, fill: '#e9eeeb', opacity: 0 }, svg);
@@ -242,7 +232,7 @@
     }
 
     // Szenario-Wahl
-    let cur = 0, step = 0, raf, timer, visible = false, playing = !reduce;
+    let cur = 0, step = 0, raf, visible = false, playing = !reduce;
     const btns = SCN.map((sc, i) => {
       const b = document.createElement('button'); b.type = 'button'; b.textContent = sc[0];
       b.addEventListener('click', () => { cur = i; step = 0; playing = !reduce; mark(); if (reduce) showStatic(); else run(); });
@@ -258,8 +248,8 @@
     }
 
     function run() {
-      cancelAnimationFrame(raf); clearTimeout(timer);
-      if (!visible || !playing || document.hidden) return;
+      cancelAnimationFrame(raf);
+      if (!visible || !playing) return;
       const [a, b, txt] = SCN[cur][1][step];
       clearHot();
       nodeEl[a].classList.add('hot'); edgeEl[ek(a, b)][0].classList.add('hot');
@@ -275,21 +265,15 @@
         step++;
         const last = step >= SCN[cur][1].length;
         if (last) { step = 0; cur = (cur + 1) % SCN.length; }
-        timer = setTimeout(() => { mark(); run(); }, last ? 1300 : 280);
+        setTimeout(() => { mark(); run(); }, last ? 1300 : 280);
       })(t0);
     }
 
     layout(); mark();
     if (reduce) showStatic();
-    Motion.observe(box, value => { visible = value; run(); }, { threshold: .05 });
-    Motion.change(() => {
-      playing = !reduce;
-      cancelAnimationFrame(raf); clearTimeout(timer);
-      pulse.setAttribute('opacity', 0); trail.setAttribute('opacity', 0);
-      if (reduce) showStatic(); else run();
-    });
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; if (visible && !reduce) run(); else cancelAnimationFrame(raf); }), { threshold: .25 }).observe(box);
     let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { unfocus(); layout(); if (reduce) showStatic(); else run(); }, 150); });
-  });
+  })();
 
   /* ── Pipeline ── */
   const N = [
@@ -322,9 +306,8 @@
     : { invalid: 'Schema ungültig', next: '↺ nächste Runde', round: 'Runde 2', llm: 'LLM-Aufruf', det: 'deterministisch', pause: '❚❚ Pause', play: '▶ Abspielen' };
   const SEQ = [0, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 8];
   const svg = document.getElementById('pipeSvg'), detail = document.getElementById('pipeDetail'), btn = document.getElementById('pipePlay');
-  Motion.init(function pipeline() {
-    if (!svg) return;
-    let pos = [], vertical = false, nodesEl = [], halo, idx = 0, playing = !reduce, sel = null, timer, visible = false;
+  if (svg) {
+    let pos = [], vertical = false, nodesEl = [], halo, idx = 0, playing = !reduce, sel = null, timer;
     const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; };
 
     function build() {
@@ -388,15 +371,12 @@
     function setPlaying(p) {
       playing = p; clearInterval(timer);
       btn.textContent = p ? TX.pause : TX.play; btn.setAttribute('aria-pressed', p);
-      if (p) sel = null;
-      if (p && visible && !document.hidden) timer = setInterval(tick, 1500);
+      if (p) { sel = null; timer = setInterval(tick, 1500); }
     }
     btn.addEventListener('click', () => setPlaying(!playing));
     build(); setPlaying(playing);
-    Motion.observe(svg, value => { visible = value; setPlaying(playing); }, { threshold: .05 });
-    Motion.change(() => setPlaying(reduce ? false : playing));
     let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 150); });
-  });
+  }
 
   /* ── Lightbox ── */
   const lb = document.getElementById('lightbox');
