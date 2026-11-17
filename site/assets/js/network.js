@@ -4,24 +4,21 @@
 (function () {
   const cv = document.getElementById('net');
   if (!cv) return;
-  const Motion = window.SiteMotion;
-  const requestAnimationFrame = Motion.frame, cancelAnimationFrame = Motion.cancel;
-  const ctx = Motion.context(cv); if (!ctx) return;
-  let reduce = Motion.reduced, raf, last = 0;
-  const budget = Motion.budget();
+  const ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ACC = [68, 209, 189], INK = [233, 238, 235], AMB = [226, 178, 119];
 
   let W, H, DPR, nodes = [], pulses = [], LINK;
   const mouse = { x: -9999, y: -9999, active: false };
 
   function size() {
-    DPR = Math.min(window.devicePixelRatio || 1, 2) * budget.scale;
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
     W = cv.clientWidth; H = cv.clientHeight;
     cv.width = W * DPR; cv.height = H * DPR;
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     LINK = Math.max(110, Math.min(170, Math.sqrt(W * H) / 7.5));
     const n = Math.round(Math.min(150, Math.max(46, (W * H) / 11500)));
-    nodes = []; pulses = [];
+    nodes = [];
     for (let i = 0; i < n; i++) {
       // Dichter auf der rechten Seite, damit die Schrift links frei atmet
       const bias = Math.random() < 0.62 ? 0.42 + Math.random() * 0.58 : Math.random();
@@ -45,34 +42,29 @@
   }
 
   function spawnPulse(from, color) {
-    if (!from) return;
     const nb = neighbours(from);
     if (!nb.length) return;
     const to = nb[(Math.random() * nb.length) | 0];
     pulses.push({ a: from, b: to, t: 0, s: 0.012 + Math.random() * 0.014, hops: 3 + ((Math.random() * 4) | 0), c: color || ACC });
   }
 
-  function step(now) {
-    const started = performance.now();
-    // Same speed at 30/60/120 Hz; cap catch-up after suspension.
-    const dt = last ? Math.min(3, (now - last) / (1000 / 60)) : 1;
-    last = now;
+  function step() {
     ctx.clearRect(0, 0, W, H);
 
     // Bewegung
     for (const p of nodes) {
       if (!reduce) {
-        p.x += p.vx * dt; p.y += p.vy * dt;
+        p.x += p.vx; p.y += p.vy;
         if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20;
         if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20;
       }
       const dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
       if (mouse.active && dm < 190) {
         const f = (1 - dm / 190);
-        p.x += (mouse.x - p.x) * 0.0035 * f * dt; p.y += (mouse.y - p.y) * 0.0035 * f * dt;
+        p.x += (mouse.x - p.x) * 0.0035 * f; p.y += (mouse.y - p.y) * 0.0035 * f;
         p.glow = Math.max(p.glow, f);
       }
-      p.glow *= Math.pow(0.96, dt);
+      p.glow *= 0.96;
     }
 
     // Kanten
@@ -121,7 +113,7 @@
     // Signale
     for (let i = pulses.length - 1; i >= 0; i--) {
       const s = pulses[i];
-      s.t += s.s * dt;
+      s.t += s.s;
       const x = s.a.x + (s.b.x - s.a.x) * s.t, y = s.a.y + (s.b.y - s.a.y) * s.t;
       // Schweif
       const tx = s.a.x + (s.b.x - s.a.x) * Math.max(0, s.t - 0.25), ty = s.a.y + (s.b.y - s.a.y) * Math.max(0, s.t - 0.25);
@@ -140,31 +132,22 @@
       }
     }
 
-    if (!reduce && pulses.length < 7 && Math.random() < 1 - Math.pow(1 - .035, dt)) {
+    if (!reduce && pulses.length < 7 && Math.random() < 0.035) {
       const hubs = nodes.filter(n => n.hub);
       spawnPulse((hubs.length ? hubs : nodes)[(Math.random() * (hubs.length || nodes.length)) | 0], Math.random() < 0.18 ? AMB : ACC);
     }
-    if (budget.sample(performance.now() - started)) {
-      // Keep node positions, graph structure and pulse interactions intact.
-      DPR = Math.min(window.devicePixelRatio || 1, 2) * budget.scale;
-      cv.width = W * DPR; cv.height = H * DPR;
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    }
-    if (!reduce && !document.hidden) raf = requestAnimationFrame(step);
+    if (!reduce) requestAnimationFrame(step);
   }
 
-  const resume = () => { cancelAnimationFrame(raf); last = 0; if (!document.hidden) step(performance.now()); };
-  Motion.change(() => { reduce = Motion.reduced; mouse.active = false; pulses = []; resume(); });
-  let rt;
-  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { size(); resume(); }, 150); });
-  window.addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = !reduce; });
+  window.addEventListener('resize', () => { size(); if (reduce) step(); });
+  window.addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });
   document.addEventListener('pointerleave', () => { mouse.active = false; mouse.x = mouse.y = -9999; });
   window.addEventListener('pointerdown', e => {
-    if (reduce || e.target.closest('a,button')) return;
+    if (e.target.closest('a,button')) return;
     let best = null, bd = 1e9;
     for (const p of nodes) { const d = Math.hypot(p.x - e.clientX, p.y - e.clientY); if (d < bd) { bd = d; best = p; } }
     if (best) { best.glow = 1; for (let k = 0; k < 5; k++) spawnPulse(best, k % 2 ? AMB : ACC); }
   });
 
-  size(); resume();
+  size(); step();
 })();
